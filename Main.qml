@@ -140,6 +140,8 @@ ApplicationWindow {
                         }
                     }
                 }
+
+                onCurrentItemChanged: changeCurrentRecord(listView.currentIndex)
             }
         }
 
@@ -148,7 +150,8 @@ ApplicationWindow {
             ColumnLayout{
                 anchors.fill: parent
                 Text{
-                    text:"Selected item"
+                    id: infoPanelCaption
+                    text:"Не выбран элемент"
                     Layout.alignment: Qt.AlignHCenter
                 }
 
@@ -160,12 +163,23 @@ ApplicationWindow {
                 }
 
                 ToolButton{
+                    id: btnDelete
                     text: "Удалить"
                     Layout.alignment: Qt.AlignRight
                 }
             }
         }
 
+    }
+
+    function changeCurrentRecord(index){
+        if (index < 0){
+            infoPanelCaption.text = "Не выбран элемент";
+            return;
+        }
+
+        var item = recordsModel.get(index);
+        infoPanelCaption.text = item.name
     }
 
 }
