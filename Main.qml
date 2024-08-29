@@ -42,6 +42,51 @@ ApplicationWindow {
         ListElement { name: "github" }
     }
 
+    header: ToolBar{
+        Rectangle{
+            property int padding: 8
+
+            width: filterEdit.width - padding
+            height: filterEdit.contentHeight
+            x: filterEdit.x + padding/2
+            anchors.verticalCenter: parent.verticalCenter
+            color: "pink"
+        }
+
+        Row{
+            anchors.fill: parent
+
+            Text{
+                text: "Поиск:"
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            TextInput{
+                id: filterEdit
+                width: 150
+                cursorVisible: true
+                padding: 10
+                focus: true
+                activeFocusOnPress: true
+                leftPadding: 10
+
+                text: "asd"
+                clip: true
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            ToolButton{
+                text: "Добавить"
+                anchors.verticalCenter: parent.verticalCenter
+            }
+
+            ToolButton{
+                text: "Удалить"
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+    }
+
 
     SplitView {
         anchors.fill: parent
