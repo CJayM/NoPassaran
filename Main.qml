@@ -7,40 +7,9 @@ ApplicationWindow {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("NoPassaran")
 
-
-    ListModel {
-        id: recordsModel
-
-        ListElement { name: "2domains" }
-        ListElement { name: "3d-mapper.com" }
-        ListElement { name: "3ddd" }
-        ListElement { name: "4pda" }
-        ListElement { name: "AliExpress" }
-        ListElement { name: "EkfvjhmzLe," }
-        ListElement { name: "Father" }
-        ListElement { name: "Habr" }
-        ListElement { name: "Hugging Face" }
-        ListElement { name: "Postshot" }
-        ListElement { name: "Skype" }
-        ListElement { name: "V-play" }
-        ListElement { name: "adobe" }
-        ListElement { name: "aftershock" }
-        ListElement { name: "alfaFile" }
-        ListElement { name: "avito" }
-        ListElement { name: "bonus" }
-        ListElement { name: "bt.astralinux.ru" }
-        ListElement { name: "bytesbox.ru" }
-        ListElement { name: "circuits.io" }
-        ListElement { name: "citylink" }
-        ListElement { name: "cjaym" }
-        ListElement { name: "discord" }
-        ListElement { name: "dmkpress" }
-        ListElement { name: "dropbox" }
-        ListElement { name: "fusionbrain.ai" }
-        ListElement { name: "github" }
-    }
+    required property var recordsModel
 
     header: ToolBar{
         Rectangle{
@@ -77,6 +46,9 @@ ApplicationWindow {
             ToolButton{
                 text: "Добавить"
                 anchors.verticalCenter: parent.verticalCenter
+                onClicked: {
+                    console.log(recordsModel);
+                }
             }
         }
 
@@ -120,7 +92,8 @@ ApplicationWindow {
                 delegate: Item{
                     height: 30
                     width: parent ? parent.width - bar.width : 10
-
+                    required property string name
+                    required property var index
 
                     Rectangle{
                         anchors.fill: parent
@@ -169,7 +142,6 @@ ApplicationWindow {
                 }
             }
         }
-
     }
 
     function changeCurrentRecord(index){
@@ -178,7 +150,7 @@ ApplicationWindow {
             return;
         }
 
-        var item = recordsModel.get(index);
+        var item = recordsModel[index];
         infoPanelCaption.text = item.name
     }
 
