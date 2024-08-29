@@ -78,11 +78,6 @@ ApplicationWindow {
                 text: "Добавить"
                 anchors.verticalCenter: parent.verticalCenter
             }
-
-            ToolButton{
-                text: "Удалить"
-                anchors.verticalCenter: parent.verticalCenter
-            }
         }
 
     }
@@ -108,7 +103,7 @@ ApplicationWindow {
 
                 ScrollBar.vertical: ScrollBar {
                     id: bar
-                    policy: ScrollBar.AlwaysOn
+                    policy: ScrollBar.AsNeeded
                     active: ScrollBar.AlwaysOn
                 }
 
@@ -147,11 +142,27 @@ ApplicationWindow {
                 }
             }
         }
+
+        // second view
         Item {
-            Rectangle{
-                width: 100
-                height: 100
-                color: "pink"
+            ColumnLayout{
+                anchors.fill: parent
+                Text{
+                    text:"Selected item"
+                    Layout.alignment: Qt.AlignHCenter
+                }
+
+                TextEdit{
+                    id: textEdit
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                }
+
+                ToolButton{
+                    text: "Удалить"
+                    Layout.alignment: Qt.AlignRight
+                }
             }
         }
 
